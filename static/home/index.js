@@ -34,35 +34,31 @@ function initSmoothScroll() {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const searchBar = document.querySelector('#autocomplete');  // Ensure this matches the input ID
-    const searchBarContainer = document.querySelector('.search-bar-container');  // For positioning suggestions
-
-    // Create a suggestion box
+    const searchBar = document.querySelector('#autocomplete');
+    const searchBarContainer = document.querySelector('.search-bar-container');
+    
+    // Create a suggestion box and append it to the container
     const suggestionsBox = document.createElement("div");
-    suggestionsBox.classList.add('autocomplete-suggestions');
-    suggestionsBox.style.display = "none";  // Hide by default
-    searchBarContainer.appendChild(suggestionsBox);
-
+    suggestionsBox.classList.add('suggestions-box');
+    searchBarContainer.appendChild(suggestionsBox); // Append to the search bar container
+    
     searchBar.addEventListener("input", () => {
         const query = searchBar.value.trim();
 
         if (query.length > 0) {
-            // Fetch suggestions from the backend
             fetch(`/search-suggestions/?query=${query}`)
                 .then(response => response.json())
                 .then(data => {
                     suggestionsBox.innerHTML = ''; // Clear previous suggestions
 
-                    // Check if there are diseases to show
                     if (data.diseases && data.diseases.length > 0) {
-                        suggestionsBox.style.display = "block";  // Show the suggestion box
+                        suggestionsBox.style.display = "block";  // Show suggestions box
 
                         data.diseases.forEach(disease => {
                             const suggestionItem = document.createElement("div");
                             suggestionItem.classList.add("suggestion-item");
                             suggestionItem.textContent = disease;
 
-                            // When a suggestion is clicked, fill the input with the selected disease
                             suggestionItem.addEventListener("click", () => {
                                 searchBar.value = disease;
                                 suggestionsBox.style.display = "none";  // Hide suggestions after selection
@@ -71,18 +67,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             suggestionsBox.appendChild(suggestionItem);
                         });
                     } else {
-                        // No suggestions found
                         suggestionsBox.innerHTML = "<div class='no-results'>No results found</div>";
                         suggestionsBox.style.display = "block";
                     }
                 })
                 .catch(error => console.error("Error fetching suggestions:", error));
         } else {
-            suggestionsBox.style.display = "none";  // Hide the suggestion box if no query
+            suggestionsBox.style.display = "none";  // Hide suggestions box if no query
         }
     });
 
-    // Hide suggestions if clicked outside
+    // Hide suggestions when clicking outside
     document.addEventListener("click", (event) => {
         if (!searchBarContainer.contains(event.target)) {
             suggestionsBox.style.display = "none";
