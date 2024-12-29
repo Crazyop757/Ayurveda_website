@@ -10,16 +10,23 @@
             <h1>Ayurvedic Remedies for Your Health</h1>
             <p>Discover natural healing wisdom passed down through generations</p>
             <div class="search-bar-container">
-                <input
+                <form method="GET" action="{% url 'search' %}" class = "search-form"> 
+                    <div class="search-input-group">
+                    <input
+                    autocomplete="off"
                     type="text"
                     id="autocomplete"
-                    placeholder="Search for remedies or plants..."
-                    class="search-input"
+                    name="query"
+                    placeholder="Searchh for remedies or plants..."
+                    required
                 />
-                <div id="suggestions-box" class="suggestions-box" ></div>
-                <button class="search-button">Search</button>
+                <button type="submit" class="search-button">Search</button>
+                </div>
+                <div id="suggestions-box" class="suggestions-box"></div>
+                
+                </form> 
             </div>
-            <button class="cta-button">Explore Remedies</button>
+            <a href="{% url 'explore' %}" class="cta-button">Explore Remedies</a>
         </div>
     </section>
 
@@ -39,7 +46,7 @@
                 <a href="#" class="learn-more">Learn More</a>
             </article>
             <article class="remedy-card">
-                <img src="{% static 'home/triphala.jpg' %}" alt="Triphala">
+                <img src="{% static 'home/triphla.jpg' %}" alt="Triphala">
                 <h3>Triphala for Digestion</h3>
                 <p>Traditional blend for digestive health and detoxification.</p>
                 <a href="#" class="learn-more">Learn More</a>

@@ -31,55 +31,67 @@ function initSearch() {
     const searchBar = document.querySelector('#autocomplete');
     const suggestionsBox = document.querySelector('#suggestions-box');
 
-    console.log('Search function initialized'); // Add this for debugging
+    console.log('Search elements:', { searchBar, suggestionsBox }); // Debug log
 
-    if (!searchBar || !suggestionsBox) return; // Ensure elements exist
+    if (!searchBar || !suggestionsBox) {
+        console.error('Search elements not found');
+        return;
+    }
 
-    searchBar.addEventListener('input', () => {
-        const query = searchBar.value.trim();
+    searchBar.addEventListener('input', async (e) => {
+        const query = e.target.value.trim();
+        console.log('Input value:', query); // Debug log
 
         if (query.length > 0) {
-            fetch(`/search-suggestions/?query=${encodeURIComponent(query)}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log(data); // Check the fetched data in the console
-                    suggestionsBox.innerHTML = ''; // Clear previous suggestions
+            try {
+                console.log('Fetching suggestions for:', query); // Debug log
+                const response = await fetch(`/search-suggestions/?query=${encodeURIComponent(query)}`);
+                console.log('Response status:', response.status); // Debug log
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
 
-                    if (data.diseases && data.diseases.length > 0) {
-                        suggestionsBox.style.display = 'block'; // Show suggestions box
-                        console.log('Suggestions box shown:', suggestionsBox.style.display);
+                const data = await response.json();
+                console.log('Received data:', data); // Debug log
 
-                        data.diseases.forEach(disease => {
-                            const suggestionItem = document.createElement('div');
-                            suggestionItem.classList.add('suggestion-item');
-                            suggestionItem.textContent = disease;
-
-                            suggestionItem.addEventListener('click', () => {
-                                searchBar.value = disease;
-                                suggestionsBox.style.display = 'none'; // Hide suggestions box after selection
-                            });
-
-                            suggestionsBox.appendChild(suggestionItem);
+                suggestionsBox.innerHTML = '';
+                
+                if (data.diseases && data.diseases.length > 0) {
+                    data.diseases.forEach(disease => {
+                        const suggestionItem = document.createElement('div');
+                        suggestionItem.classList.add('suggestion-item');
+                        suggestionItem.textContent = disease;
+                        
+                        suggestionItem.addEventListener('click', () => {
+                            searchBar.value = disease;
+                            suggestionsBox.style.display = 'none';
                         });
-                    } else {
-                        suggestionsBox.innerHTML = '<div class="no-results">No results found</div>';
-                        suggestionsBox.style.display = 'block'; // Show suggestions box
-                    }
-                })
-                .catch(error => console.error('Error fetching suggestions:', error));
+                        
+                        suggestionsBox.appendChild(suggestionItem);
+                    });
+                    suggestionsBox.style.display = 'block';
+                    console.log('Suggestions box displayed'); // Debug log
+                } else {
+                    suggestionsBox.innerHTML = '<div class="no-results">No results found</div>';
+                    suggestionsBox.style.display = 'block';
+                    console.log('No results displayed'); // Debug log
+                }
+            } catch (error) {
+                console.error('Error fetching suggestions:', error);
+                suggestionsBox.innerHTML = '<div class="suggestion-item">Error loading suggestions</div>';
+                suggestionsBox.style.display = 'block';
+            }
         } else {
-            suggestionsBox.style.display = 'none'; // Hide suggestions when query is empty
+            suggestionsBox.style.display = 'none';
+            console.log('Query empty, hiding suggestions'); // Debug log
         }
     });
 
+    // Click outside to close suggestions
     document.addEventListener('click', (event) => {
         if (!searchBar.contains(event.target) && !suggestionsBox.contains(event.target)) {
-            suggestionsBox.style.display = 'none'; // Hide suggestions on outside click
+            suggestionsBox.style.display = 'none';
         }
     });
 }

@@ -1,39 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  {% load static %}
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us</title>
-  <link rel="stylesheet" href="{% static 'C:\Users\Rudra Kushwah\Desktop\Ayurveda_Main\blueberry\static\contact\contact.css' %}">
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Afacad&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "contact/contact.css" %}">
 </head>
 <body>
-  <small>Enter message (optional) and click button "Send"</small>
-  <div class="wrapper centered">
-    <article class="letter">
-      <div class="side">
-        <h1>Contact us</h1>
-        <p>
-          <textarea placeholder="Your message"></textarea>
-        </p>
-      </div>
-      <div class="side">
-        <p>
-          <input type="text" placeholder="Your name">
-        </p>
-        <p>
-          <input type="email" placeholder="Your email">
-        </p>
-        <p>
-          <button id="sendLetter">Send</button>
-        </p>
-      </div>
-    </article>
-    <div class="envelope front"></div>
-    <div class="envelope back"></div>
-  </div>
-  <p class="result-message centered">Thank you for your message</p>
-  
-  <script src={% static "C:\Users\Rudra Kushwah\Desktop\Ayurveda_Main\blueberry\static\contact\contact.js"%}></script>
+    <div class="logo">AYU</div>
+    <div class="content-card">
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="illustration">
+                    <!-- Simple iconography representing Ayurvedic communication -->
+                    <svg viewBox="0 0 300 200" class="contact-illustration">
+                        <path d="M50,100 L250,100" class="decorative-line"/>
+                        <circle cx="150" cy="100" r="40" class="lotus-center"/>
+                        <path d="M150,60 C180,80 180,120 150,140" class="lotus-petal"/>
+                        <path d="M150,60 C120,80 120,120 150,140" class="lotus-petal"/>
+                    </svg>
+                </div>
+                <h1>Have questions? Connect with us.</h1>
+                <p>At AYU, we're dedicated to sharing the healing wisdom of Ayurveda. Whether you have questions about natural remedies or need guidance on your wellness journey, we're here to help.</p>
+            </div>
+
+            <h2>How can we assist you?</h2>
+            
+            <div class="contact-options">
+                <select id="inquiryType">
+                    <option value="" disabled selected>Select your inquiry type</option>
+                    <option value="consultation">Ayurvedic Consultation</option>
+                    <option value="remedies">Traditional Remedies</option>
+                    <option value="products">Natural Products</option>
+                    <option value="feedback">General Feedback</option>
+                    <option value="other">Other Inquiries</option>
+                </select>
+            </div>
+
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message *</label>
+                    <textarea id="message" required></textarea>
+                    <div class="character-count">0 characters</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="attachment">Attachments (optional)</label>
+                    <div class="file-upload">
+                        <input type="file" id="attachment">
+                        <div class="upload-text">Click or drop files to upload.</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+    <script src="{%static 'contact/contact.js' %}"></script>
 </body>
 </html>

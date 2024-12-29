@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Remedies</title>
+    <link rel="stylesheet" href="{% static 'explore_remedies/explore.css' %}">
+    <style>
+        h1, h3 {
+            font-family: 'Inria Serif', serif;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <h1>Explore Remedies</h1>
+
+    <div class="remedies-container">
+        <!-- Turmeric Milk -->
+        <div class="remedy-card" 
+             data-name="Golden Turmeric Milk"
+             data-english-name="Golden Turmeric Milk"
+             data-preparation="Heat milk, add turmeric powder, black pepper, and honey. Simmer for 5 minutes."
+             data-usage="Drink one cup before bedtime"
+             data-disease="Helps with cold, cough, inflammation, and improves immunity"
+             data-image="/images/turmeric-milk.png">
+            <img src="{%static 'explore_remedies/images/remedy.jpg'%}" alt="Turmeric Milk">
+            <h3>Golden Turmeric Milk</h3>
+        </div>
+
+        <!-- Ginger Tea -->
+        <div class="remedy-card"
+             data-name="Ginger Tea"
+             data-english-name="Ginger Tea"
+             data-preparation="Boil water with crushed ginger, add tea leaves and spices. Strain before serving."
+             data-usage="Drink 2-3 cups daily when needed"
+             data-disease="Effective for cold, cough, sore throat, and digestive issues"
+             data-image="/images/image.png">
+            <img src="{%static 'explore_remedies/images/remedy.jpg'%}" alt="Ginger Tea">
+            <h3>Ginger Tea</h3>
+        </div>
+
+        <!-- Tulsi Tea -->
+        <div class="remedy-card"
+             data-name="Holy Basil Tea"
+             data-english-name="Holy Basil Tea"
+             data-preparation="Boil water with fresh tulsi leaves, add honey if desired"
+             data-usage="Consume 1-2 cups daily"
+             data-disease="Respiratory issues, stress relief, and boosts immunity"
+             data-image="/images/image.png">
+            <img src="{%static 'explore_remedies/images/remedy.jpg'%}" alt="Tulsi Tea">
+            <h3>Holy Basil Tea</h3>
+        </div>
+
+        <!-- Ajwain Water -->
+        <div class="remedy-card"
+             data-name="Carom Seeds Water"
+             data-english-name="Carom Seeds Water"
+             data-preparation="Soak ajwain in water overnight, strain in morning"
+             data-usage="Drink on empty stomach in the morning"
+             data-disease="Digestive problems, bloating, and gastric issues"
+             data-image="/images/image.png">
+            <img src="{%static 'explore_remedies/images/remedy.jpg'%}" alt="Ajwain Water">
+            <h3>Carom Seeds Water</h3>
+        </div>
+
+        <!-- Cinnamon Tea -->
+        <div class="remedy-card"
+             data-name="Cinnamon Tea"
+             data-english-name="Cinnamon Tea"
+             data-preparation="Boil water with cinnamon stick, add honey to taste"
+             data-usage="One cup in the morning"
+             data-disease="Helps with diabetes, weight loss, and cholesterol"
+             data-image="/images/image.png">
+            <img src="{%static 'explore_remedies/images/remedy.jpg'%}" alt="Cinnamon Tea">
+            <h3>Cinnamon Tea</h3>
+        </div>
+
+        <!-- Mint Tea -->
+        <div class="remedy-card"
+             data-name="Mint Tea"
+             data-english-name="Mint Tea"
+             data-preparation="Boil water with fresh mint leaves, strain and serve"
+             data-usage="Drink as needed, 2-3 times daily"
+             data-disease="Digestive problems, nausea, and headache"
+             data-image="/images/image.png">
+            <img src="{%static 'explore_remedies/images/remedy.jpg'%}" alt="Mint Tea">
+            <h3>Mint Tea</h3>
+        </div>
+
+        <!-- Fennel Water -->
+        <div class="remedy-card"
+             data-name="Fennel Water"
+             data-english-name="Fennel Water"
+             data-preparation="Soak fennel seeds overnight, strain in morning"
+             data-usage="Drink throughout the day"
+             data-disease="Improves digestion, bad breath, and water retention"
+             data-image="/images/image.png">
+            <img src="{%static 'explore_remedies/images/remedy.jpg'%}" alt="Fennel Water">
+            <h3>Fennel Water</h3>
+        </div>
+
+        <!-- Aloe Vera Juice -->
+        <div class="remedy-card"
+             data-name="Aloe Vera Juice"
+             data-english-name="Aloe Vera Juice"
+             data-preparation="Blend fresh aloe vera pulp with water, strain well"
+             data-usage="Drink on empty stomach in morning"
+             data-disease="Skin problems, digestion, and immunity boost"
+             data-image="/images/image.png">
+            <img src="{%static 'explore_remedies/images/remedy.jpg'%}" alt="Aloe Vera Juice">
+            <h3>Aloe Vera Juice</h3>
+        </div>
+
+        <!-- Lemon Honey Tea -->
+        <div class="remedy-card"
+             data-name="Lemon Honey Tea"
+             data-english-name="Lemon Honey Tea"
+             data-preparation="Mix hot water with lemon juice and honey"
+             data-usage="Drink first thing in morning"
+             data-disease="Weight loss, immunity, and detoxification"
+             data-image="/images/image.png">
+            <img src="{%static 'explore_remedies/images/remedy.jpg'%}" alt="Lemon Honey Tea">
+            <h3>Lemon Honey Tea</h3>
+        </div>
+    </div>
+
+    <!-- Popup overlay -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-card">
+            <div class="close-btn">&times;</div>
+            <h2 id="popupTitle">Remedy Name <span id="popupEnglishName"></span></h2>
+            <div class="popup-content">
+                <img id="popupImage" src="" alt="Remedy Image">
+                <div class="remedy-details">
+                    <section>
+                        <h3>Preparation</h3>
+                        <p id="popupPreparation"></p>
+                    </section>
+                    <section>
+                        <h3>Usage</h3>
+                        <p id="popupUsage"></p>
+                    </section>
+                    <section>
+                        <h3>Used for disease</h3>
+                        <p id="popupDisease"></p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src={% static 'explore_remedies/explore.js' %}></script>
+</html>
