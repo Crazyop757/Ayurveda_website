@@ -1,11 +1,12 @@
 /* styles.css */
 :root {
-    --background-color: #fff9e6;
-    --card-background: #ffffff;
-    --text-color: #000000;
-    --popup-overlay: rgba(0, 0, 0, 0.7);
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --transition-speed: 0.3s;
+    --background-color: #000000;
+    --card-background: #009e52d2;
+    --text-color: #ffffff;
+    --popup-overlay: rgba(16, 11, 11, 0.416);
+    --shadow-color: rgba(255, 255, 255, 0.158);
+    --transition-speed: 0.5s;
+
 }
 
 * {
@@ -16,7 +17,7 @@
 
 body {
     background-color: var(--background-color);
-    font-family: Arial, sans-serif;
+    font-family: 'Aclonica', sans-serif;
     line-height: 1.6;
     padding: 20px;
     min-height: 100vh;
@@ -149,7 +150,7 @@ h1 {
 }
 
 .remedy-details p {
-    color: #666;
+    color: #ffffff;
     line-height: 1.6;
 }
 

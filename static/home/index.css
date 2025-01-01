@@ -1,15 +1,15 @@
 /* Variables */
 :root {
     /* Updated earthy color palette */
-    --color-primary: #2d4a1d;    /* Deep forest green */
-    --color-secondary: #5c4033;  /* Rich earth brown */
-    --color-accent: #8b7355;     /* Warm clay */
-    --color-background: #f4f1de; /* Soft parchment */
-    --color-text: #2f2f2f;
-    --color-text-light: #5c5c5c;
+    --color-primary: #59ff00;    /* Deep forest green */
+    --color-secondary: #129503;  /* Rich earth brown */
+    --color-accent: #26ff00;     /* Warm clay */
+    --color-background: #000000; /* Soft parchment */
+    --color-text: #05bd1e;
+    --color-text-light: #068715;
     
     /* Typography */
-    --font-heading: 'Playfair Display', serif;
+    --font-heading: 'Aclonica', serif;
     --font-body: 'Poppins', sans-serif;
     
     /* Spacing */
@@ -74,7 +74,7 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(244, 241, 222, 0.95);
+    background: rgba(0, 0, 0, 0.95);
     padding: var(--spacing-md) 5%;
     display: flex;
     justify-content: space-between;
@@ -127,13 +127,13 @@ header {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+    background: linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0)), 
                 url('/static/home/neem.jpg') center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 0 var(--spacing-md);
 }
 
@@ -162,7 +162,7 @@ header {
     max-width: 600px;
     width: 100%;
     border-radius: var(--border-radius-md);
-    background-color: #fff;
+    background-color: #000000;
     box-shadow: 0 4px 15px rgba(92, 64, 51, 0.1);
     z-index: 1001;
 }
@@ -192,7 +192,7 @@ header {
 .search-button {
     padding: var(--spacing-md) var(--spacing-lg);
     background: var(--color-primary);
-    color: white;
+    color: rgb(0, 0, 0);
     border: none;
     cursor: pointer;
     font-size: 1rem;
@@ -246,7 +246,7 @@ header {
 .cta-button {
     padding: var(--spacing-md) var(--spacing-lg);
     background: var(--color-accent);
-    color: white;
+    color: rgb(0, 0, 0);
     border-radius: var(--border-radius-md);
     font-weight: 500;
     transition: all var(--transition-fast);
@@ -284,7 +284,7 @@ header {
 
 .remedy-card,
 .plant-card {
-    background: white;
+    background: rgb(255, 255, 255);
     border-radius: var(--border-radius-md);
     box-shadow: 0 4px 15px rgba(92, 64, 51, 0.1);
     overflow: hidden;
@@ -294,7 +294,7 @@ header {
 .remedy-card:hover,
 .plant-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(92, 64, 51, 0.15);
+    box-shadow: 0 6px 20px rgba(194, 183, 179, 0.15);
 }
 
 .remedy-card img,
@@ -334,7 +334,7 @@ header {
 /* Footer */
 footer {
     background: var(--color-primary);
-    color: white;
+    color: rgb(0, 0, 0);
     padding: var(--spacing-xl) 5% var(--spacing-lg);
 }
 
@@ -359,7 +359,7 @@ footer {
 
 .footer-links a,
 .social-icon {
-    color: rgba(244, 241, 222, 0.8);
+    color: rgba(0, 0, 0, 0.8);
     transition: color var(--transition-fast);
 }
 
@@ -420,12 +420,6 @@ footer {
         justify-content: center;
     }
 
-<<<<<<< HEAD
-    .search-bar-container {
-        margin: var(--spacing-lg) var(--spacing-md);
-    }
-}
-=======
 /* Search Bar Styles */
 .search-bar-container {
     display: flex;
@@ -512,4 +506,3 @@ footer {
     padding: 10px;
     color: gray;
 }
->>>>>>> 19eb079bed18f5cd7ec74427e32c97d97aeb8e99
